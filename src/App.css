@@ -1,0 +1,18 @@
+td {
+    border: 1px solid black;
+    transition: all .3s ease-in-out;
+    padding: 40px;
+    cursor: pointer;
+}
+
+td:hover {
+    border-color: red;
+}
+
+table {
+    width: 100%;
+}
+
+tr:nth-child(4) {
+    background-color: red;
+}
