@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react'
 import UserCard from './UserCard'
 import Loading from '../Loading'
 import { Button } from '../Button'
+import CreateUserPopap from './CreateUserPopap'
 
 export default function Users() {
     const [users, setUsers] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
-    const [zero, setZero] = useState(400)
+    const [createData, setCreateData] = useState({
+        name: '',
+        points: ''
+    })
+
+    const [open, setOpen] = useState(true)
     const fetchData = () => {
         setLoading(true)
         setError('')
@@ -33,15 +39,19 @@ export default function Users() {
         fetchData()
     }, [])
 
+
+
     return (
         <section className='flex flex-col gap-5'>
-            <div className={`translate-x-[${zero}px] duration-300 h-screen fixed w-[400px] bg-black/80 right-0`}>
-
-            </div>
-
+            <CreateUserPopap
+                isOpen={open}
+                setClose={() => setOpen(true)}
+                setLoading={setLoading}
+                setUsers={setUsers}
+            />
             <div className='shadow-sm flex shadow-green-500 py-3 px-5'>
                 <Button callback={() => {
-                    setZero(prev => !prev ? 400 : 0)
+                    setOpen(prev => !prev)
                 }} title='Добавить' />
             </div>
             <div className='flex w-full p-5 shadow-sm flex-wrap gap-4'>
